@@ -7,19 +7,19 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚵</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --dark-bg: #0d1a0d;
-      --forest-green: #1a2e1a;
-      --mid-green: #243d24;
-      --accent-green: #2d5a27;
-      --earth: #7c5c3e;
-      --amber: #e8891a;
-      --amber-dark: #c4720f;
-      --amber-light: #f5a843;
-      --cream: #f5f0e8;
-      --cream-dim: #c9bfad;
+      --dark-bg: #0c1c2c;
+      --forest-green: #152d3f;
+      --mid-green: #1d3f55;
+      --accent-green: #1e7a6e;
+      --earth: #8b6a4e;
+      --amber: #e8762a;
+      --amber-dark: #c45e1a;
+      --amber-light: #f4954a;
+      --cream: #f4f0e8;
+      --cream-dim: #c8bfad;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,7 +31,7 @@
     ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 3px; }
 
     body {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Source Sans 3', sans-serif;
       font-weight: 400;
       background: var(--dark-bg);
       color: var(--cream);
@@ -42,7 +42,7 @@
     .container { max-width: 1200px; margin: 0 auto; }
 
     .section-eyebrow {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.9rem;
       font-weight: 600;
       letter-spacing: 4px;
@@ -53,7 +53,7 @@
     }
 
     .section-title {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: clamp(2.5rem, 6vw, 4.5rem);
       color: var(--cream);
       line-height: 1;
@@ -70,7 +70,7 @@
     .divider.centered { margin: 1.25rem auto; }
 
     .section-subtitle {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Source Sans 3', sans-serif;
       font-weight: 300;
       font-size: 1.1rem;
       color: var(--cream-dim);
@@ -90,7 +90,7 @@
     /* Buttons */
     .btn-primary {
       display: inline-block;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 1rem;
       letter-spacing: 2px;
@@ -113,7 +113,7 @@
 
     .btn-secondary {
       display: inline-block;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 1rem;
       letter-spacing: 2px;
@@ -181,9 +181,9 @@
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(232,137,26,0.6); }
-      70% { box-shadow: 0 0 0 14px rgba(232,137,26,0); }
-      100% { box-shadow: 0 0 0 0 rgba(232,137,26,0); }
+      0% { box-shadow: 0 0 0 0 rgba(232,118,42,0.6); }
+      70% { box-shadow: 0 0 0 14px rgba(232,118,42,0); }
+      100% { box-shadow: 0 0 0 0 rgba(232,118,42,0); }
     }
 
     /* ============ NAVBAR ============ */
@@ -201,14 +201,14 @@
     }
 
     #navbar.scrolled {
-      background: rgba(13,26,13,0.95);
+      background: rgba(12,28,44,0.95);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       box-shadow: 0 2px 20px rgba(0,0,0,0.4);
     }
 
     .nav-logo {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: 1.6rem;
       letter-spacing: 2px;
       text-decoration: none;
@@ -226,7 +226,7 @@
     }
 
     .nav-links a {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       font-size: 0.95rem;
       letter-spacing: 1.5px;
@@ -305,11 +305,11 @@
       top: 66px;
       left: 0;
       width: 100%;
-      background: rgba(13,26,13,0.98);
+      background: rgba(12,28,44,0.98);
       backdrop-filter: blur(12px);
       padding: 1.5rem 2rem 2rem;
       z-index: 999;
-      border-top: 1px solid rgba(232,137,26,0.2);
+      border-top: 1px solid rgba(232,118,42,0.2);
       transform: translateY(-10px);
       opacity: 0;
       transition: transform 0.3s, opacity 0.3s;
@@ -323,7 +323,7 @@
 
     #mobile-menu a {
       display: block;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       font-size: 1.2rem;
       letter-spacing: 2px;
@@ -371,7 +371,7 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(13,26,13,0.85) 0%, rgba(13,26,13,0.5) 50%, rgba(90,62,40,0.4) 100%);
+      background: linear-gradient(135deg, rgba(12,28,44,0.85) 0%, rgba(12,28,44,0.5) 50%, rgba(90,100,80,0.4) 100%);
     }
 
     .hero-content {
@@ -382,7 +382,7 @@
     }
 
     .hero-eyebrow {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       font-size: 1rem;
       letter-spacing: 5px;
@@ -395,7 +395,7 @@
     }
 
     .hero-title {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: clamp(4rem, 12vw, 9rem);
       line-height: 0.95;
       margin-bottom: 1.25rem;
@@ -406,7 +406,7 @@
     .hero-title .amber { color: var(--amber); }
 
     .hero-tagline {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Source Sans 3', sans-serif;
       font-weight: 300;
       font-size: clamp(1rem, 2.5vw, 1.25rem);
       color: var(--cream-dim);
@@ -441,7 +441,7 @@
     }
 
     .hero-scroll span {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.75rem;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -513,7 +513,7 @@
       position: absolute;
       top: 12px;
       right: 12px;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 0.75rem;
       letter-spacing: 1.5px;
@@ -545,7 +545,7 @@
       display: flex;
       align-items: center;
       gap: 5px;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 0.5px;
@@ -560,7 +560,7 @@
     }
 
     .tour-name {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: 1.75rem;
       color: var(--cream);
       margin-bottom: 0.6rem;
@@ -585,14 +585,14 @@
     }
 
     .tour-price {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: 1.5rem;
       color: var(--amber);
       line-height: 1;
     }
 
     .tour-price small {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.75rem;
       font-weight: 400;
       color: var(--cream-dim);
@@ -601,7 +601,7 @@
     }
 
     .btn-outline {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 0.85rem;
       letter-spacing: 1.5px;
@@ -719,11 +719,11 @@
       border-radius: 6px;
       padding: 1.25rem 1rem;
       text-align: center;
-      border: 1px solid rgba(232,137,26,0.2);
+      border: 1px solid rgba(232,118,42,0.2);
     }
 
     .stat-number {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: 2rem;
       color: var(--amber);
       line-height: 1;
@@ -731,7 +731,7 @@
     }
 
     .stat-label {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 1px;
@@ -766,7 +766,7 @@
     }
 
     .trail-name {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: 1.35rem;
       color: var(--amber);
       margin-bottom: 0.5rem;
@@ -823,7 +823,7 @@
     .gallery-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(26,46,26,0.7);
+      background: rgba(21,45,63,0.7);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -909,7 +909,7 @@
     }
 
     .contact-heading {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: 1.4rem;
       color: var(--amber);
       margin-bottom: 0.75rem;
@@ -957,11 +957,11 @@
       background: var(--forest-green);
       border-radius: 8px;
       padding: 2.25rem;
-      border: 1px solid rgba(232,137,26,0.15);
+      border: 1px solid rgba(232,118,42,0.15);
     }
 
     .form-title {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: 2rem;
       color: var(--cream);
       margin-bottom: 1.5rem;
@@ -980,7 +980,7 @@
     }
 
     .form-group label {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       font-size: 0.8rem;
       letter-spacing: 1.5px;
@@ -992,11 +992,11 @@
     .form-group input,
     .form-group select,
     .form-group textarea {
-      background: rgba(13,26,13,0.8);
+      background: rgba(12,28,44,0.8);
       border: 1.5px solid rgba(245,240,232,0.15);
       border-radius: 4px;
       color: var(--cream);
-      font-family: 'Lato', sans-serif;
+      font-family: 'Source Sans 3', sans-serif;
       font-size: 0.95rem;
       padding: 0.7rem 0.9rem;
       outline: none;
@@ -1019,7 +1019,7 @@
 
     .btn-submit {
       width: 100%;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 1rem;
       letter-spacing: 2px;
@@ -1052,7 +1052,7 @@
     }
 
     .form-success h3 {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: 2.5rem;
       color: var(--amber);
       margin-bottom: 0.75rem;
@@ -1067,8 +1067,8 @@
 
     /* ============ FOOTER ============ */
     footer {
-      background: #070f07;
-      border-top: 1px solid rgba(232,137,26,0.2);
+      background: #07101c;
+      border-top: 1px solid rgba(232,118,42,0.2);
       padding: 4rem 2rem 0;
     }
 
@@ -1082,7 +1082,7 @@
     }
 
     .footer-logo {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: 1.5rem;
       letter-spacing: 2px;
       text-decoration: none;
@@ -1125,13 +1125,13 @@
 
     .social-link:hover {
       border-color: var(--amber);
-      background: rgba(232,137,26,0.1);
+      background: rgba(232,118,42,0.1);
     }
 
     .social-link:hover svg { fill: var(--amber); }
 
     .footer-heading {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif;
       font-size: 1.2rem;
       color: var(--cream);
       letter-spacing: 1px;
@@ -1146,7 +1146,7 @@
     }
 
     .footer-nav a {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.95rem;
       font-weight: 400;
       color: var(--cream-dim);
@@ -1198,7 +1198,7 @@
       z-index: 900;
       background: var(--amber);
       color: var(--dark-bg);
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 0.95rem;
       letter-spacing: 1px;
@@ -1207,7 +1207,7 @@
       padding: 0.85rem 1.5rem;
       border-radius: 50px;
       animation: pulse 2s infinite;
-      box-shadow: 0 4px 15px rgba(232,137,26,0.4);
+      box-shadow: 0 4px 15px rgba(232,118,42,0.4);
     }
 
     #float-btn:hover { background: var(--amber-light); }

@@ -892,6 +892,63 @@
 
     #lightbox-close:hover svg { stroke: var(--amber); }
 
+    /* ============ REVIEWS ============ */
+    #reviews {
+      background: var(--forest-green);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .review-card {
+      background: var(--mid-green);
+      border: 1px solid rgba(232, 118, 42, 0.15);
+      border-radius: 4px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .review-stars {
+      color: var(--amber);
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    .review-quote {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--cream-dim);
+      font-weight: 300;
+      font-style: italic;
+      flex: 1;
+    }
+
+    .review-quote::before { content: '\201C'; }
+    .review-quote::after  { content: '\201D'; }
+
+    .review-author {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    @media (max-width: 900px) {
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+
     /* ============ CONTACT ============ */
     #contact {
       background: var(--dark-bg);
@@ -1302,7 +1359,7 @@
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <span class="hero-eyebrow">Seattle, WA — Pacific Northwest</span>
+    <span class="hero-eyebrow">Experience the best in the Pacific Northwest</span>
     <h1 class="hero-title">
       PNW<br>
       <span class="amber">MOUNTAIN BIKE TOURS</span>
@@ -1679,6 +1736,56 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="section-eyebrow reveal">Rider Stories</span>
+      <h2 class="section-title reveal">What Our Riders Say</h2>
+      <div class="divider centered reveal"></div>
+    </div>
+    <div class="reviews-grid">
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">Nolan knows every root and rock on these trails. We hit Duthie Hill on a rainy Tuesday and it was the best riding I've ever had. Worth every penny — already booked again for next summer.</p>
+        <span class="review-author">Marcus T. — Portland, OR</span>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">I was a total beginner and felt completely safe the whole time. Nolan matched the pace to our group and gave tips that actually made a difference. By day two I was clearing drops I never would have tried alone.</p>
+        <span class="review-author">Priya S. — Seattle, WA</span>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">The backcountry epic was exactly that — epic. Three days of remote singletrack with a guide who clearly loves the Pacific Northwest as much as we do. Logistics were seamless, views were unreal.</p>
+        <span class="review-author">Derek & Cass W. — Vancouver, BC</span>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">Organized a corporate team ride and Nolan handled everything. Mixed skill levels, no problem — he split the group perfectly and everyone had a blast. Best team-building event we've ever done, full stop.</p>
+        <span class="review-author">Jen A. — Microsoft, Redmond</span>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">Rented bikes through the tour and they were dialed in and trail-ready. Tiger Mountain in the fall fog was something out of a movie. Already sending this link to every riding buddy I have.</p>
+        <span class="review-author">Tom R. — Boise, ID</span>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">As an experienced enduro racer I was curious whether a guided tour would push me. It absolutely did. Nolan took me on lines I never would have found on a map and the flow was non-stop. Incredible ride.</p>
+        <span class="review-author">Sofia M. — San Francisco, CA</span>
+      </div>
+
     </div>
   </div>
 </section>

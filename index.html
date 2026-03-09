@@ -812,11 +812,17 @@
       border-radius: 0 6px 6px 0;
       padding: 1.25rem;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
 
     .trail-card:hover {
       transform: translateX(5px);
       box-shadow: 4px 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .trail-card:hover .trail-explore {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .trail-name {
@@ -832,6 +838,202 @@
       line-height: 1.65;
       color: var(--cream-dim);
       font-weight: 300;
+    }
+
+    .trail-explore {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--amber-light);
+      opacity: 0.6;
+      transform: translateX(-4px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    /* ============ TRAIL MODAL ============ */
+    #trail-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    #trail-modal.open {
+      display: flex;
+    }
+
+    .trail-modal-box {
+      background: var(--forest-green);
+      border-radius: 10px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    }
+
+    .trail-modal-box::-webkit-scrollbar { width: 5px; }
+    .trail-modal-box::-webkit-scrollbar-track { background: var(--forest-green); }
+    .trail-modal-box::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 3px; }
+
+    .trail-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 1.75rem 1rem;
+      border-bottom: 1px solid rgba(245,240,232,0.1);
+    }
+
+    .trail-modal-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.75rem;
+      color: var(--amber);
+      line-height: 1;
+    }
+
+    .trail-modal-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .trail-modal-close svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--cream-dim);
+      fill: none;
+      stroke-width: 2;
+      transition: stroke 0.2s;
+    }
+
+    .trail-modal-close:hover svg { stroke: var(--amber); }
+
+    .trail-modal-body {
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Photo collage: large left + 2×2 grid right */
+    .trail-photo-collage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 140px 140px;
+      gap: 6px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .trail-photo-collage .photo-main {
+      grid-row: span 2;
+    }
+
+    .trail-photo-collage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .trail-photo-collage img:hover { transform: scale(1.05); }
+
+    .trail-photo-collage .photo-cell {
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 5th photo spans both columns in second row right side — use a 3-col grid trick */
+    .trail-photo-collage {
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 145px 145px;
+    }
+
+    .trail-photo-collage .photo-main {
+      grid-column: 1;
+      grid-row: 1 / 3;
+    }
+
+    .trail-map-container {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(245,240,232,0.12);
+    }
+
+    .trail-map-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 0.6rem;
+    }
+
+    .trail-map-container iframe {
+      display: block;
+      width: 100%;
+      height: 380px;
+      border: none;
+    }
+
+    .trail-modal-description {
+      font-size: 0.93rem;
+      line-height: 1.75;
+      color: var(--cream-dim);
+      font-weight: 300;
+    }
+
+    .trail-modal-description h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      color: var(--amber-light);
+      margin: 1rem 0 0.35rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+    }
+
+    .trail-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+
+    .trail-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      background: rgba(232,118,42,0.15);
+      color: var(--amber-light);
+      border: 1px solid rgba(232,118,42,0.3);
+    }
+
+    @media (max-width: 640px) {
+      .trail-photo-collage {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 100px 100px 100px;
+      }
+      .trail-photo-collage .photo-main {
+        grid-column: 1 / 3;
+        grid-row: 1;
+      }
     }
 
     /* ============ GALLERY ============ */
@@ -1611,29 +1813,35 @@
         <div class="divider centered reveal"></div>
       </div>
       <div class="trails-grid">
-        <div class="trail-card reveal">
+        <div class="trail-card reveal" onclick="openTrailModal('raging-river')">
           <div class="trail-name">Raging River State Forest</div>
           <p class="trail-desc">Old-growth ferns, ancient cedar groves, and surprisingly technical terrain just 30 minutes from downtown Seattle. First time riders and seasoned shredders alike will find something to love.</p>
+          <span class="trail-explore">Explore trails &#8250;</span>
         </div>
-        <div class="trail-card reveal">
+        <div class="trail-card reveal" onclick="openTrailModal('tiger-mountain')">
           <div class="trail-name">Tiger Mountain</div>
           <p class="trail-desc">Washington's most popular trail system, right in Seattle's backyard. Over 100 miles of trail ranging from beginner-friendly flow to technical old-growth singletrack. The West Tiger 3 descent is a rite of passage.</p>
+          <span class="trail-explore">Explore trails &#8250;</span>
         </div>
-        <div class="trail-card reveal">
+        <div class="trail-card reveal" onclick="openTrailModal('duthie-hill')">
           <div class="trail-name">Duthie Hill</div>
           <p class="trail-desc">King County's premier purpose-built bike park. Berms, jumps, drops, and wooden features designed for progression. Perfect for building skills and having a blast doing it.</p>
+          <span class="trail-explore">Explore trails &#8250;</span>
         </div>
-        <div class="trail-card reveal">
+        <div class="trail-card reveal" onclick="openTrailModal('galbraith')">
           <div class="trail-name">Galbraith Mountain</div>
           <p class="trail-desc">Bellingham's crown jewel. Over 65 miles of machine-built trails. The Chuckanut Range backdrop and consistently maintained berms make this a bucket-list stop.</p>
+          <span class="trail-explore">Explore trails &#8250;</span>
         </div>
-        <div class="trail-card reveal">
+        <div class="trail-card reveal" onclick="openTrailModal('port-gamble')">
           <div class="trail-name">Port Gamble Mountain Bike Park</div>
           <p class="trail-desc">Kitsap Peninsula's best-kept secret. Over 30 miles of purpose-built flow trails winding through mossy second-growth forest, with Hood Canal views thrown in for free. A ferry ride never felt so worth it.</p>
+          <span class="trail-explore">Explore trails &#8250;</span>
         </div>
-        <div class="trail-card reveal">
+        <div class="trail-card reveal" onclick="openTrailModal('cascades')">
           <div class="trail-name">The Cascade Mountain Range</div>
           <p class="trail-desc">High-alpine singletrack, exposed ridgelines, and views that will stop you mid-descent. Our Cascade backcountry routes access terrain most riders never find alone.</p>
+          <span class="trail-explore">Explore trails &#8250;</span>
         </div>
       </div>
     </div>
@@ -1701,6 +1909,31 @@
     <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
   </button>
   <img id="lightbox-img" src="" alt="Enlarged gallery image">
+</div>
+
+<!-- Trail System Modal -->
+<div id="trail-modal" role="dialog" aria-modal="true">
+  <div class="trail-modal-box">
+    <div class="trail-modal-header">
+      <div class="trail-modal-title" id="trail-modal-title"></div>
+      <button class="trail-modal-close" id="trail-modal-close" aria-label="Close">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="trail-modal-body">
+      <!-- Photo collage -->
+      <div class="trail-photo-collage" id="trail-modal-photos"></div>
+      <!-- Description -->
+      <div class="trail-modal-description" id="trail-modal-desc"></div>
+      <!-- Trailforks map -->
+      <div>
+        <div class="trail-map-label">Live Trail Map — Powered by Trailforks</div>
+        <div class="trail-map-container">
+          <iframe id="trail-modal-map" src="" loading="lazy" title="Trailforks trail map" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- CONTACT -->
@@ -2050,6 +2283,191 @@
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
+  });
+
+  // ===== TRAIL SYSTEM MODAL =====
+  const TRAIL_DATA = {
+    'raging-river': {
+      name: 'Raging River State Forest',
+      tags: ['Beginner–Advanced', 'Old-Growth', '~30 min from Seattle', 'Loam & Roots'],
+      photos: [
+        'https://picsum.photos/seed/ragingA/800/600',
+        'https://picsum.photos/seed/ragingB/400/300',
+        'https://picsum.photos/seed/ragingC/400/300',
+        'https://picsum.photos/seed/ragingD/400/300',
+        'https://picsum.photos/seed/ragingE/400/300',
+      ],
+      mapUrl: 'https://www.trailforks.com/widgets/map/?activitytype=1&z=13&lat=47.472&lon=-121.909&sport=mtb&basemap=trailforks&trailsopacity=1&units=imperial',
+      description: `
+        <div class="trail-tags" id="tmodal-tags"></div>
+        <p>Raging River State Forest is one of the PNW's best-kept secrets — a dense web of trails draped in old-growth ferns and cathedral cedar groves, sitting only 30 minutes east of downtown Seattle. The forest delivers a genuine wilderness feel without a long drive.</p>
+        <h4>What to Expect</h4>
+        <p>Trails here span the full spectrum. Smooth mossy bench-cut singletrack for newer riders gives way to rooty, technical chutes for those who want to test themselves. The natural terrain rewards riders who can read the trail rather than rely on features, making every session feel exploratory.</p>
+        <h4>Signature Trails</h4>
+        <p><strong>Powerline</strong> offers a long, sustained climb with payoff views. <strong>Lower Raging</strong> is a rowdy descent through tight old-growth corridors with chunky root sections. <strong>Pipeline</strong> traces a ridge and connects to broader Washington Trails Association maintained paths.</p>
+        <h4>Best Season</h4>
+        <p>Raging River drains well for a PNW forest — late spring through early fall are peak conditions, but fall riding through autumn color is exceptional. Avoid the heaviest rain periods in winter when trails get saturated.</p>
+      `
+    },
+    'tiger-mountain': {
+      name: 'Tiger Mountain',
+      tags: ['All Levels', '100+ Miles of Trail', 'Classic PNW', 'Year-Round'],
+      photos: [
+        'https://picsum.photos/seed/tigerA/800/600',
+        'https://picsum.photos/seed/tigerB/400/300',
+        'https://picsum.photos/seed/tigerC/400/300',
+        'https://picsum.photos/seed/tigerD/400/300',
+        'https://picsum.photos/seed/tigerE/400/300',
+      ],
+      mapUrl: 'https://www.trailforks.com/widgets/map/?activitytype=1&z=13&lat=47.527&lon=-121.968&sport=mtb&basemap=trailforks&trailsopacity=1&units=imperial',
+      description: `
+        <p>Tiger Mountain Trail System is Washington State's most-ridden trail network — and with good reason. More than 100 miles of trail spread across multiple summits in the Issaquah Alps, offering something for every rider at every fitness level, all within 30 minutes of Seattle.</p>
+        <h4>What to Expect</h4>
+        <p>Tiger is a genuine multi-day destination compressed into a single mountain. The west side features buff, high-speed descents through second-growth forest. The east side gets gnarlier — loose over hardpack, tight trees, and technical rock sections that reward commitment. Elevation change is real here: most descents run 800–1,200 ft.</p>
+        <h4>Signature Trails</h4>
+        <p><strong>West Tiger 3</strong> is a PNW rite of passage — a lung-busting fire road climb with panoramic Sound views as reward. <strong>Predator</strong> is a high-speed flow descent with perfectly cambered berms. <strong>Iverson Railroad</strong> gives beginners a long, forgiving tour of the lower mountain. <strong>Preston Railroad</strong> links systems on the east side.</p>
+        <h4>Best Season</h4>
+        <p>Tiger's lower trails ride year-round thanks to good drainage. Upper-mountain trails are best May–October. It's a reliable go-to on days when higher elevations are wet or snowy.</p>
+      `
+    },
+    'duthie-hill': {
+      name: 'Duthie Hill Park',
+      tags: ['All Levels', 'Bike Park', 'Purpose-Built', 'Jumps & Features'],
+      photos: [
+        'https://picsum.photos/seed/duthieA/800/600',
+        'https://picsum.photos/seed/duthieB/400/300',
+        'https://picsum.photos/seed/duthieC/400/300',
+        'https://picsum.photos/seed/duthieD/400/300',
+        'https://picsum.photos/seed/duthieE/400/300',
+      ],
+      mapUrl: 'https://www.trailforks.com/widgets/map/?activitytype=1&z=14&lat=47.584&lon=-122.021&sport=mtb&basemap=trailforks&trailsopacity=1&units=imperial',
+      description: `
+        <p>Duthie Hill Park is King County's crown jewel of purpose-built mountain biking. Located in Issaquah, this compact 120-acre park punches way above its size with meticulously designed flow trails, technical features, and progressive jump lines built and maintained by the Evergreen Mountain Bike Alliance.</p>
+        <h4>What to Expect</h4>
+        <p>Every inch of Duthie is intentional. Beginner zones introduce new riders to berms and rollers in a controlled environment. Intermediate flow trails build speed and confidence. Advanced zones feature tabletops, gap jumps, wood ladder bridges, and steep chutes. Progression is built into the park's DNA — you can spend months working through zones and still find new challenges.</p>
+        <h4>Signature Features</h4>
+        <p><strong>Fifty-Fifty</strong> is the classic beginner/intermediate flow loop — fast berms and perfectly spaced rollers. <strong>7-Hills</strong> is a technical challenge course with stunts and skinny wood features. <strong>Thrillium</strong> is a machine-built jump trail with rhythm sections for intermediate riders. <strong>Corkscrew</strong> is a natural-feeling descent hidden at the park's edge.</p>
+        <h4>Best Season</h4>
+        <p>Duthie's well-engineered drainage means it rides in almost all conditions. It's one of the few parks in the PNW that stays open and rideable year-round — a huge deal on wet winter weekends.</p>
+      `
+    },
+    'galbraith': {
+      name: 'Galbraith Mountain',
+      tags: ['All Levels', '65+ Miles', 'Bellingham', 'Machine-Built Flow'],
+      photos: [
+        'https://picsum.photos/seed/galbraithA/800/600',
+        'https://picsum.photos/seed/galbraithB/400/300',
+        'https://picsum.photos/seed/galbraithC/400/300',
+        'https://picsum.photos/seed/galbraithD/400/300',
+        'https://picsum.photos/seed/galbraithE/400/300',
+      ],
+      mapUrl: 'https://www.trailforks.com/widgets/map/?activitytype=1&z=13&lat=48.705&lon=-122.480&sport=mtb&basemap=trailforks&trailsopacity=1&units=imperial',
+      description: `
+        <p>Galbraith Mountain is Bellingham's defining trail network and one of the best mountain biking destinations in the Pacific Northwest. Over 65 miles of trail — almost all purpose-built — wind through the Chuckanut Range above Bellingham Bay, offering a variety of riding that rivals trail systems twice its geographic footprint.</p>
+        <h4>What to Expect</h4>
+        <p>Galbraith has a machine-built polish that makes every trail feel dialed. Berms are steep and perfectly formed. Jump landings are consistent. The forest is open enough to carry real speed through the corners. The mountain's layout creates natural laps — climb once and string together multiple descents before heading back up.</p>
+        <h4>Signature Trails</h4>
+        <p><strong>Oyster Dome connector</strong> links the trail system to panoramic Puget Sound views. <strong>Chuckanut Proper</strong> delivers raw, rooty technical riding that contrasts with the flow trails. <strong>7-Up</strong> is a long, loamy descent beloved by locals. <strong>Rock Drop Zone</strong> features progressive mandatory rock moves for advanced riders who want exposure to natural tech.</p>
+        <h4>Best Season</h4>
+        <p>Galbraith's lower trails ride September through June. The mountain sees less precipitation than trails closer to the Cascades, and the sandy-loam soil drains fast. Summer riding is exceptional — long days, dry trails, and Bellingham's vibrant bike culture around every corner.</p>
+      `
+    },
+    'port-gamble': {
+      name: 'Port Gamble Mountain Bike Park',
+      tags: ['Beginner–Advanced', 'Flow Trails', 'Kitsap Peninsula', 'Ferry Access'],
+      photos: [
+        'https://picsum.photos/seed/portgambleA/800/600',
+        'https://picsum.photos/seed/portgambleB/400/300',
+        'https://picsum.photos/seed/portgambleC/400/300',
+        'https://picsum.photos/seed/portgambleD/400/300',
+        'https://picsum.photos/seed/portgambleE/400/300',
+      ],
+      mapUrl: 'https://www.trailforks.com/widgets/map/?activitytype=1&z=13&lat=47.862&lon=-122.551&sport=mtb&basemap=trailforks&trailsopacity=1&units=imperial',
+      description: `
+        <p>Port Gamble Mountain Bike Park is the Kitsap Peninsula's finest trail network and one of the most scenic places to ride in the greater Seattle area. Winding through mossy second-growth forest with glimpses of Hood Canal, this park combines purpose-built flow with genuine Pacific Northwest character — and the ferry ride to get there is half the adventure.</p>
+        <h4>What to Expect</h4>
+        <p>The park's 30+ miles are laid out across a forested hillside that catches just enough elevation to generate fun, rollable descents without punishing climbs. Flow is the name of the game here — smooth, bermed, and designed to keep momentum. The trails are accessible enough for confident beginners but varied enough to keep advanced riders coming back.</p>
+        <h4>Signature Trails</h4>
+        <p><strong>Canal View</strong> is the trail everyone talks about — long, swoopy, with breaks in the trees revealing Hood Canal and the Olympic Mountains. <strong>Logjam</strong> is a playful intermediate with rhythm sections and optional wood features. <strong>Pebble Beach</strong> skirts the edge of the property near the water. <strong>Gamble Trail</strong> delivers the longest sustained descent in the park.</p>
+        <h4>Getting There</h4>
+        <p>Take the Kingston Ferry from Edmonds — bikes are always welcome. The ride from the ferry terminal to the trailhead is a short, flat spin through the historic Port Gamble townsite. It adds a Pacific Northwest adventure element that you just don't get driving to a trailhead.</p>
+      `
+    },
+    'cascades': {
+      name: 'The Cascade Mountain Range',
+      tags: ['Advanced', 'Backcountry', 'Alpine', 'Guided Access Only'],
+      photos: [
+        'https://picsum.photos/seed/cascadesA/800/600',
+        'https://picsum.photos/seed/cascadesB/400/300',
+        'https://picsum.photos/seed/cascadesC/400/300',
+        'https://picsum.photos/seed/cascadesD/400/300',
+        'https://picsum.photos/seed/cascadesE/400/300',
+      ],
+      mapUrl: 'https://www.trailforks.com/widgets/map/?activitytype=1&z=10&lat=47.600&lon=-121.500&sport=mtb&basemap=trailforks&trailsopacity=1&units=imperial',
+      description: `
+        <p>The Cascade Mountain Range is the crown jewel of Pacific Northwest mountain biking — vast, exposed, technical, and staggeringly beautiful. Our Cascade tours access routes in the Alpine Lakes Wilderness corridor and surrounding national forest land, taking you to terrain most riders never experience without a guide who knows the way.</p>
+        <h4>What to Expect</h4>
+        <p>These are not bike park trails. Cascade riding demands fitness, technical skill, route-finding ability, and comfort with exposure. You'll climb through old-growth forest before breaking into high-alpine meadows, then drop through boulder fields and scree with the North Cascades panorama spread out behind you. These rides change you.</p>
+        <h4>Signature Routes</h4>
+        <p><strong>Gallagher Head Lake Loop</strong> is a hidden gem traversing forested ridgelines above the Skykomish Valley. <strong>Iron Horse State Park</strong> uses a converted rail corridor as a spine connecting remote Cascade valleys. <strong>Naches Trail</strong> is one of the oldest overland routes in Washington — now a legendary mountain bike traverse. <strong>Enchantments Perimeter</strong> is reserved for fit, experienced riders who want a genuine Cascade high-route day.</p>
+        <h4>Guide Required</h4>
+        <p>Our Cascade tours are the most logistically complex of everything we offer — shuttles, navigation, weather windows, and emergency planning are all part of the equation. Every Cascade tour is led by Nolan personally, with group sizes capped at 6 to keep the experience intimate and safe.</p>
+      `
+    },
+  };
+
+  const trailModal = document.getElementById('trail-modal');
+  const trailModalTitle = document.getElementById('trail-modal-title');
+  const trailModalPhotos = document.getElementById('trail-modal-photos');
+  const trailModalDesc = document.getElementById('trail-modal-desc');
+  const trailModalMap = document.getElementById('trail-modal-map');
+
+  function openTrailModal(key) {
+    const trail = TRAIL_DATA[key];
+    if (!trail) return;
+
+    trailModalTitle.textContent = trail.name;
+
+    // Build photo collage: main (large) + 4 smaller
+    trailModalPhotos.innerHTML = `
+      <div class="photo-cell photo-main"><img src="${trail.photos[0]}" alt="${trail.name} photo 1" loading="lazy"></div>
+      <div class="photo-cell"><img src="${trail.photos[1]}" alt="${trail.name} photo 2" loading="lazy"></div>
+      <div class="photo-cell"><img src="${trail.photos[2]}" alt="${trail.name} photo 3" loading="lazy"></div>
+      <div class="photo-cell"><img src="${trail.photos[3]}" alt="${trail.name} photo 4" loading="lazy"></div>
+      <div class="photo-cell"><img src="${trail.photos[4]}" alt="${trail.name} photo 5" loading="lazy"></div>
+    `;
+
+    // Description with tags injected
+    trailModalDesc.innerHTML = trail.description;
+    const tagContainer = trailModalDesc.querySelector('#tmodal-tags');
+    if (tagContainer) {
+      tagContainer.innerHTML = trail.tags.map(t => `<span class="trail-tag">${t}</span>`).join('');
+    } else {
+      // Insert tags at top if placeholder not present
+      const tagsHtml = `<div class="trail-tags">${trail.tags.map(t => `<span class="trail-tag">${t}</span>`).join('')}</div>`;
+      trailModalDesc.insertAdjacentHTML('afterbegin', tagsHtml);
+    }
+
+    // Set map (defer to avoid blocking open animation)
+    trailModalMap.src = '';
+    setTimeout(() => { trailModalMap.src = trail.mapUrl; }, 80);
+
+    trailModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeTrailModal() {
+    trailModal.classList.remove('open');
+    trailModalMap.src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('trail-modal-close').addEventListener('click', closeTrailModal);
+  trailModal.addEventListener('click', (e) => {
+    if (e.target === trailModal) closeTrailModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeTrailModal();
   });
 
   // Form submit

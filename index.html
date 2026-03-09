@@ -637,8 +637,12 @@
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: start;
-      margin-bottom: 5rem;
     }
+
+    .guide-block { margin-bottom: 5rem; }
+
+    .guide-reverse .about-img-wrap { order: 2; }
+    .guide-reverse .about-content  { order: 1; }
 
     .about-img-wrap {
       position: relative;
@@ -653,6 +657,50 @@
       position: relative;
       z-index: 1;
     }
+
+    .guide-slideshow {
+      position: relative;
+      width: 100%;
+      height: 550px;
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .guide-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+
+    .guide-slide.active { opacity: 1; }
+
+    .slideshow-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.3s;
+    }
+
+    .dot.active { background: var(--amber); }
 
     .about-img-accent {
       position: absolute;
@@ -1279,6 +1327,9 @@
     @media (max-width: 1024px) {
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-img-wrap img { height: 400px; }
+      .guide-slideshow { height: 400px; }
+      .guide-reverse .about-img-wrap { order: 0; }
+      .guide-reverse .about-content  { order: 0; }
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .trails-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -1319,6 +1370,7 @@
       .form-row { grid-template-columns: 1fr; }
       .stats-row { grid-template-columns: 1fr; }
       .about-img-wrap img { height: 300px; }
+      .guide-slideshow { height: 300px; }
     }
   </style>
 </head>
@@ -1470,17 +1522,30 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
-    <div class="about-grid">
+
+    <!-- Guide 1: Nolan -->
+    <div class="about-grid guide-block">
       <div class="about-img-wrap reveal-left">
-        <img src="https://picsum.photos/seed/guide47/600/800" alt="Nolan Souza, guide">
+        <div class="guide-slideshow" id="slideshow-nolan">
+          <img src="https://picsum.photos/seed/guide47/600/800"  class="guide-slide active" alt="Nolan Souza on trail">
+          <img src="https://picsum.photos/seed/rider55/600/800"  class="guide-slide" alt="Nolan Souza riding">
+          <img src="https://picsum.photos/seed/pnwguide3/600/800" class="guide-slide" alt="Nolan Souza in the forest">
+          <img src="https://picsum.photos/seed/mtbguide8/600/800" class="guide-slide" alt="Nolan Souza descending">
+          <div class="slideshow-dots">
+            <button class="dot active" aria-label="Photo 1"></button>
+            <button class="dot" aria-label="Photo 2"></button>
+            <button class="dot" aria-label="Photo 3"></button>
+            <button class="dot" aria-label="Photo 4"></button>
+          </div>
+        </div>
         <div class="about-img-accent"></div>
       </div>
       <div class="about-content reveal-right">
         <span class="section-eyebrow">Your Guide</span>
-        <h2 class="section-title">Born on These Trails</h2>
+        <h2 class="section-title">Nolan Souza</h2>
         <div class="divider"></div>
-        <p class="about-bio">Nolan Souza is a Seattle native who grew up racing XC on Tiger Mountain before the trails had names — back when the only markers were tire tracks and local knowledge passed between friends. After a decade competing in the Pacific Northwest enduro circuit, he transitioned to sharing that knowledge, founding PNW Mountain Bike Tours in 2015 with a simple mission: give every rider, from total beginner to seasoned shredder, an unforgettable day in the trees.</p>
-        <p class="about-bio">With over 15 years of guiding experience across the PNW's most diverse terrain, Nolan combines elite-level riding skills with genuine wilderness safety training and a contagious passion for the sport. His groups are small by design — because great guiding is personal.</p>
+        <p class="about-bio">Nolan grew up in Bellevue chasing trails on Duthie Hill and Tiger Mountain before most of his friends knew what a berm was. At 27, he's already built a reputation as one of the most dedicated guides in the Pacific Northwest — someone who genuinely loves getting people on bikes and into the trees just as much as he loves riding himself.</p>
+        <p class="about-bio">He launched PNW Mountain Bike Tours at 17, spending every summer building deep knowledge of the trail networks across the region. What sets Nolan apart isn't just his riding ability — it's how much he cares. He'll remember which riders need a push and which need patience, and he'll find the exact line that makes you stop at the bottom and say "let's hit that again."</p>
         <ul class="credentials-list">
           <li>
             <span class="cred-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
@@ -1492,7 +1557,7 @@
           </li>
           <li>
             <span class="cred-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-            15+ years guiding in the PNW backcountry
+            10+ years guiding across the PNW
           </li>
           <li>
             <span class="cred-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
@@ -1509,11 +1574,11 @@
         </ul>
         <div class="stats-row">
           <div class="stat-box">
-            <div class="stat-number">1,200+</div>
+            <div class="stat-number">800+</div>
             <div class="stat-label">Riders Guided</div>
           </div>
           <div class="stat-box">
-            <div class="stat-number">15</div>
+            <div class="stat-number">10</div>
             <div class="stat-label">Years Experience</div>
           </div>
           <div class="stat-box">
@@ -1521,6 +1586,72 @@
             <div class="stat-label">Trail Systems</div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Guide 2: Jake -->
+    <div class="about-grid guide-block guide-reverse">
+      <div class="about-content reveal-left">
+        <span class="section-eyebrow">Your Guide</span>
+        <h2 class="section-title">Jake Morrison</h2>
+        <div class="divider"></div>
+        <p class="about-bio">Jake Morrison discovered mountain biking during a summer trip to Whistler at 16 and never looked back. A Bellingham native who grew up lapping Galbraith Mountain, he brings deep trail knowledge of the northern PNW — from the machine-built berms of the Chuckanut Range to remote Cascade singletrack that doesn't appear on any map.</p>
+        <p class="about-bio">Jake's guiding style is relaxed but purposeful. He has a natural gift for reading riders and dialing in the right challenge for each skill level — whether that means walking a first-timer through their first drop or sending tech lines alongside riders who want to be pushed. Everyone in his groups feels like they belong out there.</p>
+        <ul class="credentials-list">
+          <li>
+            <span class="cred-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            PMBIA Level 2 Certified Mountain Bike Instructor
+          </li>
+          <li>
+            <span class="cred-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            Wilderness First Aid (WFA) Certified
+          </li>
+          <li>
+            <span class="cred-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            7+ years guiding across the northern PNW
+          </li>
+          <li>
+            <span class="cred-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            Former Galbraith Mountain trail crew volunteer
+          </li>
+          <li>
+            <span class="cred-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            Leave No Trace Trainer
+          </li>
+          <li>
+            <span class="cred-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            Fully licensed &amp; insured through Washington State
+          </li>
+        </ul>
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-number">600+</div>
+            <div class="stat-label">Riders Guided</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">30+</div>
+            <div class="stat-label">Trail Systems</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-img-wrap reveal-right">
+        <div class="guide-slideshow" id="slideshow-jake">
+          <img src="https://picsum.photos/seed/jake14/600/800"   class="guide-slide active" alt="Jake Morrison on trail">
+          <img src="https://picsum.photos/seed/guide82/600/800"  class="guide-slide" alt="Jake Morrison riding">
+          <img src="https://picsum.photos/seed/pnwbike9/600/800" class="guide-slide" alt="Jake Morrison in the forest">
+          <img src="https://picsum.photos/seed/guide33/600/800"  class="guide-slide" alt="Jake Morrison descending">
+          <div class="slideshow-dots">
+            <button class="dot active" aria-label="Photo 1"></button>
+            <button class="dot" aria-label="Photo 2"></button>
+            <button class="dot" aria-label="Photo 3"></button>
+            <button class="dot" aria-label="Photo 4"></button>
+          </div>
+        </div>
+        <div class="about-img-accent"></div>
       </div>
     </div>
 
@@ -1862,6 +1993,31 @@
       hamburger.classList.remove('open');
       mobileMenu.classList.remove('open');
     });
+  });
+
+  // Guide photo slideshows
+  ['nolan', 'jake'].forEach(id => {
+    const ss = document.getElementById('slideshow-' + id);
+    if (!ss) return;
+    const slides = ss.querySelectorAll('.guide-slide');
+    const dots   = ss.querySelectorAll('.dot');
+    let cur = 0;
+
+    function goTo(n) {
+      slides[cur].classList.remove('active');
+      dots[cur].classList.remove('active');
+      cur = n;
+      slides[cur].classList.add('active');
+      dots[cur].classList.add('active');
+    }
+
+    let timer = setInterval(() => goTo((cur + 1) % slides.length), 4500);
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => {
+      clearInterval(timer);
+      goTo(i);
+      timer = setInterval(() => goTo((cur + 1) % slides.length), 4500);
+    }));
   });
 
   // Hero video cycling

@@ -363,9 +363,15 @@
     .hero-bg {
       position: absolute;
       inset: -10%;
-      background: url('https://images.unsplash.com/photo-b7SFv8wsoB0?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      overflow: hidden;
+    }
+    #hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       transform: scale(1.05);
       will-change: transform;
+      transition: opacity 0.8s ease;
     }
 
     .hero-overlay {
@@ -1288,7 +1294,12 @@
 
 <!-- HERO -->
 <section id="home">
-  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-bg">
+    <video id="hero-video" autoplay muted playsinline
+      poster="https://images.unsplash.com/photo-b7SFv8wsoB0?auto=format&fit=crop&w=1920&q=80">
+      <source src="https://videos.pexels.com/video-files/5214231/5214231-hd_1920_1080_25fps.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Seattle, WA — Pacific Northwest</span>
@@ -1746,12 +1757,30 @@
     });
   });
 
+  // Hero video cycling
+  const heroVideo = document.getElementById('hero-video');
+  const clips = [
+    'https://videos.pexels.com/video-files/5214231/5214231-hd_1920_1080_25fps.mp4',
+    'https://videos.pexels.com/video-files/6420515/6420515-hd_1920_1080_25fps.mp4',
+    'https://videos.pexels.com/video-files/854543/854543-hd_1920_1080_25fps.mp4',
+    'https://videos.pexels.com/video-files/854670/854670-hd_1920_1080_25fps.mp4',
+  ];
+  let clipIndex = 0;
+  heroVideo.addEventListener('ended', () => {
+    clipIndex = (clipIndex + 1) % clips.length;
+    heroVideo.style.opacity = '0';
+    setTimeout(() => {
+      heroVideo.src = clips[clipIndex];
+      heroVideo.load();
+      heroVideo.play().then(() => { heroVideo.style.opacity = '1'; }).catch(() => {});
+    }, 600);
+  });
+
   // Hero parallax
-  const heroBg = document.getElementById('hero-bg');
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     if (scrollY < window.innerHeight) {
-      heroBg.style.transform = `scale(1.05) translateY(${scrollY * 0.3}px)`;
+      heroVideo.style.transform = `scale(1.05) translateY(${scrollY * 0.3}px)`;
     }
   });
 

@@ -956,13 +956,24 @@
       position: relative;
     }
 
-    /* 5th photo spans both columns in second row right side — use a 3-col grid trick */
-    .trail-photo-collage {
+    /* 5-photo: 3-col grid, main spans both rows in col 1 */
+    .trail-photo-collage.photos-5 {
       grid-template-columns: 2fr 1fr 1fr;
       grid-template-rows: 145px 145px;
     }
 
-    .trail-photo-collage .photo-main {
+    .trail-photo-collage.photos-5 .photo-main {
+      grid-column: 1;
+      grid-row: 1 / 3;
+    }
+
+    /* 3-photo: 2-col grid, main spans both rows in col 1 */
+    .trail-photo-collage.photos-3 {
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 145px 145px;
+    }
+
+    .trail-photo-collage.photos-3 .photo-main {
       grid-column: 1;
       grid-row: 1 / 3;
     }
@@ -2372,11 +2383,9 @@
       name: 'Port Gamble Mountain Bike Park',
       tags: ['Beginner–Advanced', 'Flow Trails', 'Kitsap Peninsula', 'Ferry Access'],
       photos: [
-        'https://picsum.photos/seed/portgambleA/800/600',
-        'https://picsum.photos/seed/portgambleB/400/300',
-        'https://picsum.photos/seed/portgambleC/400/300',
-        'https://picsum.photos/seed/portgambleD/400/300',
-        'https://picsum.photos/seed/portgambleE/400/300',
+        'https://i.imgur.com/YV9PbDW.jpeg',
+        'https://i.imgur.com/20bARO1.jpeg',
+        'https://i.imgur.com/a0zbsoq.jpeg',
       ],
       mapUrl: 'https://maps.google.com/maps?q=47.862,-122.551&t=k&z=13&ie=UTF8&iwloc=&output=embed',
       description: `
@@ -2424,14 +2433,11 @@
 
     trailModalTitle.textContent = trail.name;
 
-    // Build photo collage: main (large) + 4 smaller
-    trailModalPhotos.innerHTML = `
-      <div class="photo-cell photo-main"><img src="${trail.photos[0]}" alt="${trail.name} photo 1" loading="lazy"></div>
-      <div class="photo-cell"><img src="${trail.photos[1]}" alt="${trail.name} photo 2" loading="lazy"></div>
-      <div class="photo-cell"><img src="${trail.photos[2]}" alt="${trail.name} photo 3" loading="lazy"></div>
-      <div class="photo-cell"><img src="${trail.photos[3]}" alt="${trail.name} photo 4" loading="lazy"></div>
-      <div class="photo-cell"><img src="${trail.photos[4]}" alt="${trail.name} photo 5" loading="lazy"></div>
-    `;
+    // Build photo collage: main (large) + remaining smaller
+    trailModalPhotos.className = `trail-photo-collage photos-${trail.photos.length}`;
+    trailModalPhotos.innerHTML = trail.photos.map((src, i) =>
+      `<div class="photo-cell${i === 0 ? ' photo-main' : ''}"><img src="${src}" alt="${trail.name} photo ${i + 1}" loading="lazy"></div>`
+    ).join('\n      ');
 
     // Description with tags injected
     trailModalDesc.innerHTML = trail.description;

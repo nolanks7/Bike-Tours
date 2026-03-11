@@ -1054,32 +1054,22 @@
     }
 
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: 250px;
-      gap: 0.5rem;
+      columns: 3;
+      column-gap: 0.5rem;
     }
 
     .gallery-item {
-      overflow: hidden;
+      break-inside: avoid;
       border-radius: 4px;
       position: relative;
       cursor: pointer;
-    }
-
-    .gallery-item:nth-child(1) {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-
-    .gallery-item:nth-child(5) {
-      grid-column: span 2;
+      margin-bottom: 0.5rem;
+      overflow: hidden;
     }
 
     .gallery-item img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
       transition: transform 0.4s ease;
     }
@@ -1554,16 +1544,8 @@
       #float-btn { display: block; }
 
       .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 200px;
+        columns: 2;
       }
-
-      .gallery-item:nth-child(1) {
-        grid-column: span 2;
-        grid-row: span 1;
-      }
-
-      .gallery-item:nth-child(5) { grid-column: span 1; }
 
       .footer-grid {
         grid-template-columns: 1fr;

@@ -967,6 +967,16 @@
       grid-row: 1 / 3;
     }
 
+    /* 4-photo: symmetrical 2×2 grid, all equal */
+    .trail-photo-collage.photos-4 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 145px 145px;
+    }
+
+    .trail-photo-collage.photos-4 .photo-main {
+      grid-row: span 1;
+    }
+
     /* 1-photo: single full-width image */
     .trail-photo-collage.photos-1 {
       grid-template-columns: 1fr;

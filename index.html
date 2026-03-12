@@ -967,6 +967,17 @@
       grid-row: 1 / 3;
     }
 
+    /* 1-photo: single full-width image */
+    .trail-photo-collage.photos-1 {
+      grid-template-columns: 1fr;
+      grid-template-rows: 290px;
+    }
+
+    .trail-photo-collage.photos-1 .photo-main {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
     /* 3-photo: 2-col grid, main spans both rows in col 1 */
     .trail-photo-collage.photos-3 {
       grid-template-columns: 2fr 1fr;
@@ -2155,11 +2166,7 @@
       name: 'Raging River State Forest',
       tags: ['Beginner–Advanced', 'Old-Growth', '~30 min from Seattle', 'Loam & Roots'],
       photos: [
-        'https://picsum.photos/seed/ragingA/800/600',
-        'https://picsum.photos/seed/ragingB/400/300',
-        'https://picsum.photos/seed/ragingC/400/300',
-        'https://picsum.photos/seed/ragingD/400/300',
-        'https://picsum.photos/seed/ragingE/400/300',
+        'https://i.imgur.com/999xDWH.jpeg',
       ],
       mapUrl: 'https://maps.google.com/maps?q=47.5102,-121.8414&t=k&z=15&ie=UTF8&iwloc=&output=embed',
       description: `

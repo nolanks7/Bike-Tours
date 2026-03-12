@@ -434,7 +434,7 @@
 
     .hero-scroll {
       position: absolute;
-      bottom: 2.5rem;
+      bottom: 1.25rem;
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
@@ -448,22 +448,30 @@
 
     .hero-scroll span {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--cream-dim);
     }
 
     .scroll-arrow {
-      animation: bounce 1.5s ease-in-out infinite;
+      animation: scrollBounce 1.6s ease-in-out infinite;
     }
 
     .scroll-arrow svg {
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
       fill: none;
       stroke: var(--amber);
-      stroke-width: 2;
+      stroke-width: 2.5;
+      filter: drop-shadow(0 0 6px rgba(224,160,48,0.6));
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0);   opacity: 1; }
+      40%       { transform: translateY(10px); opacity: 0.5; }
+      60%       { transform: translateY(10px); opacity: 0.5; }
+      80%       { transform: translateY(0);   opacity: 1; }
     }
 
     /* ============ TOURS ============ */

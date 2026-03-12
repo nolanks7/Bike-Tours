@@ -802,9 +802,21 @@
 
     .trails-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 1.25rem;
       margin-top: 1rem;
+    }
+
+    .trails-grid .trail-card {
+      grid-column: span 2;
+    }
+
+    .trails-grid .trail-card:nth-child(4) {
+      grid-column: 2 / 4;
+    }
+
+    .trails-grid .trail-card:nth-child(5) {
+      grid-column: 4 / 6;
     }
 
     .trail-card {
@@ -1557,6 +1569,9 @@
       .guide-reverse .about-content  { order: 0; }
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .trails-grid { grid-template-columns: repeat(2, 1fr); }
+      .trails-grid .trail-card { grid-column: span 1; }
+      .trails-grid .trail-card:nth-child(4),
+      .trails-grid .trail-card:nth-child(5) { grid-column: span 1; }
     }
 
     @media (max-width: 768px) {

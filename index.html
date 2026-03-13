@@ -1368,6 +1368,11 @@
 
     .form-group select option { background: var(--dark-bg); }
 
+    .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
+    }
+
     .form-group textarea {
       resize: vertical;
       min-height: 110px;

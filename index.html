@@ -1002,6 +1002,12 @@
       grid-row: 1 / 3;
     }
 
+    /* contain mode: show full image without cropping */
+    .trail-photo-collage.photos-contain img {
+      object-fit: contain;
+      background: #111;
+    }
+
     /* 4-photo: symmetrical 2×2 grid, all equal */
     .trail-photo-collage.photos-4 {
       grid-template-columns: 1fr 1fr;
@@ -2244,6 +2250,7 @@
     'tiger-mountain': {
       name: 'Tiger Mountain',
       tags: ['All Levels', 'Natural Terrain', 'Classic PNW', 'Year-Round'],
+      containImages: true,
       photos: [
         'https://i.imgur.com/Ll2lJAH.jpeg',
         'https://i.imgur.com/LIWOBUi.jpeg',
@@ -2334,7 +2341,7 @@
     trailModalTitle.textContent = trail.name;
 
     // Build photo collage: main (large) + remaining smaller
-    trailModalPhotos.className = `trail-photo-collage photos-${trail.photos.length}`;
+    trailModalPhotos.className = `trail-photo-collage photos-${trail.photos.length}${trail.containImages ? ' photos-contain' : ''}`;
     trailModalPhotos.innerHTML = trail.photos.map((src, i) =>
       `<div class="photo-cell${i === 0 ? ' photo-main' : ''}"><img src="${src}" alt="${trail.name} photo ${i + 1}" loading="lazy"></div>`
     ).join('\n      ');

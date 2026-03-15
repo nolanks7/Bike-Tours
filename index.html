@@ -102,13 +102,17 @@
       text-decoration: none;
       border: 2px solid var(--amber);
       cursor: pointer;
-      transition: background 0.25s, color 0.25s, transform 0.2s;
+      min-width: 220px;
+      text-align: center;
+      box-shadow: 0 0 14px 3px rgba(232, 118, 42, 0.55), 0 0 30px 6px rgba(232, 118, 42, 0.25);
+      transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
     }
 
     .btn-primary:hover {
       background: var(--amber-light);
       border-color: var(--amber-light);
       transform: translateY(-2px);
+      box-shadow: 0 0 22px 6px rgba(244, 149, 74, 0.75), 0 0 45px 12px rgba(244, 149, 74, 0.35);
     }
 
     .btn-secondary {
@@ -125,7 +129,10 @@
       text-decoration: none;
       border: 2px solid var(--cream);
       cursor: pointer;
-      transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s;
+      min-width: 220px;
+      text-align: center;
+      box-shadow: 0 0 14px 3px rgba(245, 240, 232, 0.3), 0 0 30px 6px rgba(245, 240, 232, 0.12);
+      transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
     }
 
     .btn-secondary:hover {
@@ -133,6 +140,7 @@
       border-color: var(--amber);
       color: var(--amber);
       transform: translateY(-2px);
+      box-shadow: 0 0 22px 6px rgba(232, 118, 42, 0.55), 0 0 45px 12px rgba(232, 118, 42, 0.25);
     }
 
     /* Reveal animations */

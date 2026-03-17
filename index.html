@@ -469,25 +469,6 @@
       color: var(--cream-dim);
     }
 
-    .scroll-arrow {
-      animation: scrollBounce 1.6s ease-in-out infinite;
-    }
-
-    .scroll-arrow svg {
-      width: 35px;
-      height: 35px;
-      fill: none;
-      stroke: var(--amber);
-      stroke-width: 2.5;
-      filter: drop-shadow(0 0 6px rgba(224,160,48,0.6));
-    }
-
-    @keyframes scrollBounce {
-      0%, 100% { transform: translateY(0);   opacity: 1; }
-      40%       { transform: translateY(10px); opacity: 0.5; }
-      60%       { transform: translateY(10px); opacity: 0.5; }
-      80%       { transform: translateY(0);   opacity: 1; }
-    }
 
     /* ============ TOURS ============ */
     #tours {
@@ -1688,9 +1669,6 @@
     </div>
   </div>
   <div class="hero-scroll">
-<div class="scroll-arrow">
-      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-    </div>
   </div>
 </section>
 

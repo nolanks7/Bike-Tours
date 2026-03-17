@@ -1722,7 +1722,7 @@
         </div>
         <div class="tour-footer">
           <div class="tour-price">$160<small>per person</small></div>
-          <a href="#contact" class="btn-outline">Book This</a>
+          <a href="#contact" class="btn-outline book-this-btn" data-tour="sampler">Book This</a>
         </div>
       </div>
       <!-- Card 2 -->
@@ -1743,7 +1743,7 @@
         </div>
         <div class="tour-footer">
           <div class="tour-price">$220<small>per person</small></div>
-          <a href="#contact" class="btn-outline">Book This</a>
+          <a href="#contact" class="btn-outline book-this-btn" data-tour="fullsend">Book This</a>
         </div>
       </div>
       <!-- Card 3 -->
@@ -1764,7 +1764,7 @@
         </div>
         <div class="tour-footer">
           <div class="tour-price">$300+<small>per person</small></div>
-          <a href="#contact" class="btn-outline">Book This</a>
+          <a href="#contact" class="btn-outline book-this-btn" data-tour="backcountry">Book This</a>
         </div>
       </div>
     </div>
@@ -2397,6 +2397,14 @@
     } else {
       alert('Something went wrong. Please try again or email nolansouza@email.arizona.edu directly.');
     }
+  });
+
+  // "Book This" buttons: pre-select the matching tour in the contact form
+  document.querySelectorAll('.book-this-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tourSelect = document.getElementById('tour');
+      if (tourSelect) tourSelect.value = btn.dataset.tour;
+    });
   });
 </script>
 </body>

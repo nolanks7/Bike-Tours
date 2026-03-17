@@ -999,6 +999,26 @@
       grid-row: span 1;
     }
 
+    /* 4-photo contain: single column, each image shows in full */
+    .trail-photo-collage.photos-4.photos-contain {
+      grid-template-columns: 1fr;
+      grid-template-rows: unset;
+    }
+
+    .trail-photo-collage.photos-4.photos-contain .photo-cell {
+      height: auto;
+    }
+
+    .trail-photo-collage.photos-4.photos-contain .photo-main {
+      grid-row: span 1;
+    }
+
+    .trail-photo-collage.photos-4.photos-contain img {
+      height: auto;
+      max-height: none;
+      width: 100%;
+    }
+
     /* 1-photo: single full-width image */
     .trail-photo-collage.photos-1 {
       grid-template-columns: 1fr;

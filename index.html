@@ -1117,17 +1117,21 @@
     }
 
     .gallery-grid {
-      columns: 3;
-      column-gap: 0.5rem;
+      width: 100%;
     }
 
     .gallery-item {
-      break-inside: avoid;
+      width: calc(33.333% - 0.34rem);
+      float: left;
+      margin-bottom: 0.5rem;
       border-radius: 4px;
       position: relative;
       cursor: pointer;
-      margin-bottom: 0.5rem;
       overflow: hidden;
+    }
+
+    .gallery-grid-sizer {
+      width: calc(33.333% - 0.34rem);
     }
 
     .gallery-item img {
@@ -1614,8 +1618,9 @@
       .hamburger { display: flex; }
       #float-btn { display: block; }
 
-      .gallery-grid {
-        columns: 2;
+      .gallery-item,
+      .gallery-grid-sizer {
+        width: calc(50% - 0.25rem);
       }
 
       .footer-grid {
@@ -1869,7 +1874,8 @@
       <h2 class="section-title reveal">The PNW in All Its Glory</h2>
       <div class="divider centered reveal"></div>
     </div>
-    <div class="gallery-grid">
+    <div class="gallery-grid" id="masonry-gallery">
+      <div class="gallery-grid-sizer"></div>
       <div class="gallery-item" onclick="openLightbox(this)">
         <img src="https://i.imgur.com/de5MADq.jpeg" alt="Mountain biking" loading="lazy">
         <div class="gallery-overlay">
@@ -2416,6 +2422,19 @@
       const tourSelect = document.getElementById('tour');
       if (tourSelect) tourSelect.value = btn.dataset.tour;
       document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script>
+  var grid = document.getElementById('masonry-gallery');
+  imagesLoaded(grid, function() {
+    new Masonry(grid, {
+      itemSelector: '.gallery-item',
+      columnWidth: '.gallery-grid-sizer',
+      gutter: 8,
+      percentPosition: true
     });
   });
 </script>

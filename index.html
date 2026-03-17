@@ -2399,11 +2399,13 @@
     }
   });
 
-  // "Book This" buttons: pre-select the matching tour in the contact form
+  // "Book This" buttons: pre-select the matching tour and scroll to the form
   document.querySelectorAll('.book-this-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
       const tourSelect = document.getElementById('tour');
       if (tourSelect) tourSelect.value = btn.dataset.tour;
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     });
   });
 </script>

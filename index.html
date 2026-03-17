@@ -999,10 +999,10 @@
       grid-row: span 1;
     }
 
-    /* 4-photo contain: single column, each image shows in full */
+    /* 4-photo contain: 2×2 grid, each image shows in full at natural aspect ratio */
     .trail-photo-collage.photos-4.photos-contain {
-      grid-template-columns: 1fr;
-      grid-template-rows: unset;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
     }
 
     .trail-photo-collage.photos-4.photos-contain .photo-cell {

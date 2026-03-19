@@ -469,14 +469,6 @@
       color: var(--cream-dim);
     }
 
-    #hero-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
 
     /* ============ TOURS ============ */
     #tours {
@@ -1688,7 +1680,6 @@
       src="https://videos.pexels.com/video-files/5214231/5214231-hd_1920_1080_25fps.mp4">
     </video>
   </div>
-  <canvas id="hero-canvas"></canvas>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Experience the best in the Pacific Northwest</span>
@@ -2447,138 +2438,6 @@
     });
   });
 </script>
-<script>
-  // Hero canvas: flow-field particle system with glowing trails
-  (function () {
-    const canvas = document.getElementById('hero-canvas');
-    const ctx = canvas.getContext('2d');
-    let W, H, t = 0;
 
-    function resize() {
-      W = canvas.width  = canvas.offsetWidth;
-      H = canvas.height = canvas.offsetHeight;
-      initParticles();
-    }
-
-    // Sine-based vector field — two overlapping frequencies create organic, ever-shifting flow
-    function field(x, y, t) {
-      const nx = x / W, ny = y / H;
-      return (
-        Math.sin(nx * 3.5 + t * 0.44) * Math.cos(ny * 4.1 - t * 0.34) * Math.PI * 2 +
-        Math.sin(nx * 1.7 - t * 0.24) * Math.sin(ny * 5.8 + t * 0.53) * Math.PI +
-        Math.cos(nx * 5.8 + ny * 2.3 + t * 0.29) * 0.6
-      );
-    }
-
-    const TRAIL = 65, N = 270;
-    let particles = [];
-
-    function spawn(p) {
-      p.x       = Math.random() * W;
-      p.y       = Math.random() * H;
-      p.trail   = [];
-      p.life    = 0;
-      p.maxLife = 230 + Math.random() * 270;
-      p.speed   = 1.1 + Math.random() * 1.7;
-      p.isAmber = Math.random() < 0.22;
-      p.size    = 0.7 + Math.random() * 1.3;
-      return p;
-    }
-
-    function initParticles() {
-      particles = Array.from({ length: N }, () => {
-        const p = spawn({});
-        p.life = Math.random() * p.maxLife * 0.85; // pre-age so screen fills instantly
-        return p;
-      });
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, W, H);
-      t += 0.007;
-
-      ctx.save();
-      ctx.globalCompositeOperation = 'screen';
-      ctx.lineCap = 'round';
-
-      for (const p of particles) {
-        const angle = field(p.x, p.y, t);
-        p.x += Math.cos(angle) * p.speed;
-        p.y += Math.sin(angle) * p.speed;
-        p.life++;
-
-        // Wrap edges cleanly
-        let wrap = false;
-        if (p.x < 0)  { p.x += W; wrap = true; }
-        else if (p.x > W) { p.x -= W; wrap = true; }
-        if (p.y < 0)  { p.y += H; wrap = true; }
-        else if (p.y > H) { p.y -= H; wrap = true; }
-        if (wrap) p.trail = [];
-
-        p.trail.push({ x: p.x, y: p.y });
-        if (p.trail.length > TRAIL) p.trail.shift();
-        if (p.life > p.maxLife) spawn(p);
-
-        const len = p.trail.length;
-        if (len < 5) continue;
-
-        // Fade-in / fade-out envelope
-        const lf  = p.life / p.maxLife;
-        const env = lf < 0.08 ? lf / 0.08 : lf > 0.84 ? (1 - lf) / 0.16 : 1.0;
-
-        const [r, g, b] = p.isAmber ? [242, 116, 36] : [46, 168, 70];
-        const col = `${r},${g},${b}`;
-
-        const i1 = Math.floor(len * 0.38);
-        const i2 = Math.floor(len * 0.70);
-
-        // — dim ghost tail —
-        ctx.strokeStyle = `rgba(${col},${env * 0.11})`;
-        ctx.lineWidth   = 0.7;
-        ctx.shadowBlur  = 0;
-        ctx.beginPath();
-        ctx.moveTo(p.trail[0].x, p.trail[0].y);
-        for (let i = 1; i < len; i++) ctx.lineTo(p.trail[i].x, p.trail[i].y);
-        ctx.stroke();
-
-        // — mid glow —
-        ctx.strokeStyle = `rgba(${col},${env * 0.40})`;
-        ctx.lineWidth   = 1.4;
-        ctx.shadowBlur  = 8;
-        ctx.shadowColor = `rgba(${col},0.35)`;
-        ctx.beginPath();
-        ctx.moveTo(p.trail[i1].x, p.trail[i1].y);
-        for (let i = i1 + 1; i < len; i++) ctx.lineTo(p.trail[i].x, p.trail[i].y);
-        ctx.stroke();
-
-        // — bright head streak —
-        ctx.strokeStyle = `rgba(${col},${env * 0.80})`;
-        ctx.lineWidth   = 2.0 + p.size;
-        ctx.shadowBlur  = 18;
-        ctx.shadowColor = `rgba(${col},0.55)`;
-        ctx.beginPath();
-        ctx.moveTo(p.trail[i2].x, p.trail[i2].y);
-        for (let i = i2 + 1; i < len; i++) ctx.lineTo(p.trail[i].x, p.trail[i].y);
-        ctx.stroke();
-
-        // — hot-white head dot —
-        const hr = Math.min(r + 45, 255), hg = Math.min(g + 45, 255), hb = Math.min(b + 30, 255);
-        ctx.shadowBlur  = 24;
-        ctx.shadowColor = `rgba(${col},${env * 0.9})`;
-        ctx.fillStyle   = `rgba(${hr},${hg},${hb},${env * 0.95})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 1.5, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      ctx.restore();
-      requestAnimationFrame(animate);
-    }
-
-    resize();
-    window.addEventListener('resize', resize);
-    animate();
-  })();
-</script>
 </body>
 </html>

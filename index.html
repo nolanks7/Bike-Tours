@@ -469,6 +469,14 @@
       color: var(--cream-dim);
     }
 
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
 
     /* ============ TOURS ============ */
     #tours {
@@ -1680,6 +1688,7 @@
       src="https://videos.pexels.com/video-files/5214231/5214231-hd_1920_1080_25fps.mp4">
     </video>
   </div>
+  <canvas id="hero-canvas"></canvas>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Experience the best in the Pacific Northwest</span>
@@ -2437,6 +2446,101 @@
       percentPosition: true
     });
   });
+</script>
+<script>
+  // Hero canvas: layered tree silhouettes + drifting mist
+  (function() {
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      initLayers();
+    }
+
+    // Draw a simple pine tree silhouette (single triangle)
+    function drawTree(x, baseY, h, w) {
+      ctx.beginPath();
+      ctx.moveTo(x, baseY - h);
+      ctx.lineTo(x - w / 2, baseY);
+      ctx.lineTo(x + w / 2, baseY);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    // Generate a row of evenly-spaced trees with slight variation
+    function makeTrees(count, baseYFrac, minH, maxH, minW, maxW) {
+      const trees = [];
+      for (let i = 0; i < count; i++) {
+        trees.push({
+          xFrac: (i + 0.1 + Math.random() * 0.8) / count,
+          yFrac: baseYFrac + (Math.random() - 0.5) * 0.03,
+          h: minH + Math.random() * (maxH - minH),
+          w: minW + Math.random() * (maxW - minW),
+        });
+      }
+      return trees;
+    }
+
+    const layerDefs = [
+      { count: 30, baseY: 0.82, minH: 40,  maxH: 70,  minW: 18, maxW: 30, alpha: 0.25 },
+      { count: 20, baseY: 0.87, minH: 70,  maxH: 110, minW: 28, maxW: 48, alpha: 0.35 },
+      { count: 12, baseY: 0.91, minH: 100, maxH: 155, minW: 40, maxW: 68, alpha: 0.50 },
+      { count:  7, baseY: 0.95, minH: 140, maxH: 210, minW: 55, maxW: 90, alpha: 0.70 },
+    ];
+
+    let layers = [];
+    function initLayers() {
+      layers = layerDefs.map(d => ({ ...d, trees: makeTrees(d.count, d.baseY, d.minH, d.maxH, d.minW, d.maxW) }));
+    }
+
+    // Mist bands: each drifts at a slightly different speed
+    const mistBands = [
+      { xFrac: 0.0,  speed: 0.10, yFrac: 0.68, hFrac: 0.12, alpha: 0.07 },
+      { xFrac: 0.55, speed: 0.06, yFrac: 0.76, hFrac: 0.10, alpha: 0.06 },
+      { xFrac: 0.2,  speed: 0.14, yFrac: 0.83, hFrac: 0.08, alpha: 0.05 },
+    ];
+
+    function animate() {
+      const W = canvas.width, H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      // Draw tree layers back-to-front
+      for (const layer of layers) {
+        ctx.fillStyle = `rgba(4, 10, 5, ${layer.alpha})`;
+        for (const t of layer.trees) {
+          drawTree(t.xFrac * W, t.yFrac * H, t.h, t.w);
+        }
+      }
+
+      // Drift and draw mist
+      for (const m of mistBands) {
+        m.xFrac += m.speed / W;
+        if (m.xFrac > 1) m.xFrac -= 1;
+
+        const yTop = m.yFrac * H;
+        const yBot = yTop + m.hFrac * H;
+        const grad = ctx.createLinearGradient(0, yTop, 0, yBot);
+        grad.addColorStop(0,   `rgba(180, 210, 185, 0)`);
+        grad.addColorStop(0.4, `rgba(180, 210, 185, ${m.alpha})`);
+        grad.addColorStop(0.6, `rgba(180, 210, 185, ${m.alpha})`);
+        grad.addColorStop(1,   `rgba(180, 210, 185, 0)`);
+        ctx.fillStyle = grad;
+
+        // Two copies so the band tiles seamlessly as it scrolls
+        const offsetX = m.xFrac * W;
+        ctx.fillRect(offsetX - W, yTop, W, yBot - yTop);
+        ctx.fillRect(offsetX,     yTop, W, yBot - yTop);
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    animate();
+  })();
 </script>
 </body>
 </html>
